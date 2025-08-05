@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bella Cucina | Authentic Italian Restaurant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        body {
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-padding {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: #d4a762;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background-color: #d4a762;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title p {
+            color: #777;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 18px;
+        }
+        
+        /* Header Styles */
+        header {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            background: rgba(0, 0, 0, 0.8);
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            padding: 15px 0;
+            background: rgba(0, 0, 0, 0.95);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            z-index: 1001;
+        }
+        
+        .logo span {
+            color: #d4a762;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            transition: all 0.5s ease;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: #d4a762;
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: #d4a762;
+        }
+        
+        .reservation-btn {
+            background-color: #d4a762;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-left: 30px;
+        }
+        
+        .reservation-btn:hover {
+            background-color: #c1914b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            color: white;
+            font-size: 24px;
+            z-index: 1001;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding-top: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 72px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #d4a762;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 0 10px;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+        }
+        
+        .btn:hover {
+            background-color: #c1914b;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .btn-outline:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        /* About Section */
+        .about {
+            background-color: #f9f9f9;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .signature {
+            margin-top: 30px;
+            font-style: italic;
+            color: #d4a762;
+            font-weight: 600;
+        }
+        
+        .about-image {
+            flex: 1;
+            position: relative;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .experience-badge {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            background-color: #d4a762;
+            color: white;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .experience-badge span:first-child {
+            font-size: 40px;
+            font-weight: 700;
+        }
+        
+        .experience-badge span:last-child {
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        
+        /* Menu Section */
+        .menu {
+            background-color: white;
+        }
+        
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .menu-tab {
+            padding: 10px 25px;
+            margin: 0 10px;
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            color: #555;
+            transition: all 0.3s;
+        }
+        
+        .menu-tab.active, .menu-tab:hover {
+            color: #d4a762;
+            border-bottom-color: #d4a762;
+        }
+        
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            gap: 30px;
+        }
+        
+        .menu-item {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .menu-item-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .menu-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .menu-item:hover .menu-item-img img {
+            transform: scale(1.1);
+        }
+        
+        .menu-item-content {
+            flex: 1;
+        }
+        
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed #ddd;
+            padding-bottom: 10px;
+        }
+        
+        .menu-item-title {
+            font-size: 20px;
+            color: #333;
+        }
+        
+        .menu-item-price {
+            color: #d4a762;
+            font-weight: 700;
+        }
+        
+        .menu-item-desc {
+            color: #777;
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            background-color: #f9f9f9;
+        }
+        .cooking-classes {
+            background-color: white;
+        }
+        
+        .classes-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .class-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .class-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .class-img {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .class-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .class-card:hover .class-img img {
+            transform: scale(1.1);
+        }
+        
+        .class-content {
+            padding: 25px;
+        }
+        
+        .class-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .class-date {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #d4a762;
+        }
+        
+        .class-date i {
+            margin-right: 10px;
+        }
+        
+        .class-desc {
+            color: #777;
+            margin-bottom: 20px;
+        }
+        
+        /* Seasonal Menu */
+        .seasonal-menu {
+            background-color: #f9f9f9;
+        }
+        
+        .seasonal-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .seasonal-text {
+            flex: 1;
+        }
+        
+        .seasonal-text h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .seasonal-text p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .seasonal-ingredients {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .ingredient {
+            background-color: #d4a762;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-size: 14px;
+        }
+        
+        .seasonal-image {
+            flex: 1;
+        }
+        
+        .seasonal-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        /* Charity Section */
+        .charity {
+            background-color: #fff;
+        }
+        
+        .charity-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .charity-stats {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-box {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            min-width: 200px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            color: #d4a762;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 18px;
+            color: #555;
+        }
+        
+        .charity-programs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+        }
+        
+        .program-card {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        .program-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .program-title i {
+            color: #d4a762;
+        }
+        
+        .program-desc {
+            color: #777;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .testimonial-item {
+            padding: 0 20px;
+        }
+        
+        .testimonial-text {
+            font-size: 20px;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .author-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: #777;
+            font-size: 14px;
+        }
+        
+        /* Gallery Section */
+        .gallery {
+            background-color: white;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 250px;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(212, 167, 98, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-overlay i {
+            color: white;
+            font-size: 30px;
+        }
+        
+        /* Reservation Section */
+        .reservation {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+        }
+        
+        .reservation h2 {
+            color: white;
+        }
+        
+        .reservation h2::after {
+            background-color: white;
+        }
+        
+        .reservation p {
+            color: #ddd;
+        }
+        
+        .reservation-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            background-color: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+        }
+        
+        .form-control::placeholder {
+            color: #ddd;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #d4a762;
+        }
+        
+        .submit-btn {
+            background-color: #d4a762;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            grid-column: 1 / -1;
+        }
+        
+        .submit-btn:hover {
+            background-color: #c1914b;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #d4a762;
+        }
+        
+        .footer-column p {
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #d4a762;
+        }
+        
+        .contact-info {
+            margin-bottom: 20px;
+        }
+        
+        .contact-info p {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: #d4a762;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            background-color: #333;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: #d4a762;
+            transform: translateY(-3px);
+        }
+        
+        .opening-hours {
+            color: #bbb;
+        }
+        
+        .opening-hours p {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed #444;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #bbb;
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 60px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 50px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                margin-top: 30px;
+            }
+            
+            .menu-items {
+                grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                background: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 50px 0;
+                transition: all 0.5s ease;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .reservation-btn {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+            
+            .hero h1 {
+                font-size: 40px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .hero-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                margin: 0;
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .experience-badge {
+                width: 120px;
+                height: 120px;
+                bottom: -20px;
+                right: -20px;
+            }
+            
+            .experience-badge span:first-child {
+                font-size: 30px;
+            }
+            
+            .experience-badge span:last-child {
+                font-size: 14px;
+            }
+            
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .section-title p {
+                font-size: 16px;
+            }
+            
+            .menu-tab {
+                padding: 8px 15px;
+                font-size: 16px;
+                margin: 5px;
+            }
+            
+            .menu-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .menu-item-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .reservation-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonial-author {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Bella <span>Cucina</span></div>
+                <div class="menu-toggle" id="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#reservation" class="reservation-btn">Reservations</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Authentic Italian Cuisine</h1>
+                <p>Experience the taste of Italy with our handcrafted dishes made from traditional recipes and the finest ingredients.</p>
+                <div class="hero-buttons">
+                    <a href="#menu" class="btn">Our Menu</a>
+                    <a href="#reservation" class="btn btn-outline">Book a Table</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about section-padding" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Story</h2>
+                <p>Discover the passion behind our authentic Italian dishes</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Welcome to Bella Cucina</h3>
+                    <p>Founded in 1995 by Chef Marco Rossi, Bella Cucina brings the authentic flavors of Italy to your table. Our recipes have been passed down through generations, preserving the traditional cooking methods that make Italian cuisine so special.</p>
+                    <p>We source only the finest ingredients, many imported directly from Italy, to ensure an authentic dining experience. Our pasta is made fresh daily, and our sauces simmer for hours to develop their rich, complex flavors.</p>
+                    <p class="signature">- Chef Marco Rossi</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1555244162-803834f70033?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Our Chef">
+                    <div class="experience-badge">
+                        <span>25+</span>
+                        <span>Years Experience</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu section-padding" id="menu">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Menu</h2>
+                <p>Explore our selection of authentic Italian dishes</p>
+            </div>
+            <div class="menu-tabs">
+                <button class="menu-tab active" data-category="starters">Starters</button>
+                <button class="menu-tab" data-category="pasta">Pasta</button>
+                <button class="menu-tab" data-category="main">Main Courses</button>
+                <button class="menu-tab" data-category="desserts">Desserts</button>
+            </div>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Bruschetta">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h4 class="menu-item-title">Bruschetta Classica</h4>
+                            <span class="menu-item-price">$8.50</span>
+                        </div>
+                        <p class="menu-item-desc">Toasted bread topped with tomatoes, garlic, fresh basil, and extra virgin olive oil</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-img">
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAJQAxQMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAAFAAIDBAYHAQj/xABIEAACAQMCAwYCBgQLBwUBAAABAgMABBEFIQYSMRMiQVFhcYGhFDJCkcHRFSNSsQcWNENig5Ky0uHxJDM1VXKCoiVERVOTF//EABoBAAIDAQEAAAAAAAAAAAAAAAADAQIEBQb/xAApEQACAgICAQMEAQUAAAAAAAABAgADESEEEjETIkEFFDJRIzNSYYHh/9oADAMBAAIRAxEAPwDSDAGcjHrXqshB74I/oLmmLbIDnl/Gpwjbcir7k4rdqV3PUZf2M+r7CpyQsBdmUMPsgVGFb7bgH0FP5YwAWyx88Us4k7jUYu2cPy+GTipgPELTlTI2BNSBeX6xxVCRLBTI8N4BRXoXO7FtqkYAdRTo45Zv9yhPqBtVcwxISsZ6AnHvUoTuIzA5PhVpLCX+dkVM+A3NSrZQr1Z3+VUNgkhDKPL60sD/AEomsEA/mQfVmJpzGCMd5Ix7KKUblUZMuKyYJBXwG9Lm9aLdvGRkcn9mvC8b+KMPVRVByaz8yfRb9QM9xEo3k+6pJSVcBI3kyoJJwBmigWIH6kQ/7RXkkERA5oV9wSP3UwWqZU1tBGZ22/VRj3yad2JIPazu/tt+6iJtYj0Dr8c1DPZyEDsGjbz5iVNMWxTKFDKAgt03Ea83m2/xp3aczckedupA2FTG0lTHaxEnzbpincsiDAAz5AbU0uJQLiNjBDBTnfbOaUo5GIB6bDvdaRVycyAc37qcI0X6ijPmBvUCWkfJnBIp4BA+rgetOHMN1A981WubiKD+UXAX05hU4JkEgSfc9HVfTFeUObVLbPcWWQeaRMw/dSq3pmV7rPAr9c4HtT1XG5brTFkZY5FZ8Mw236VUCxux5mlk9FNMCEyS2JbkeGM5kkAx5kCmG6R0P0ZTK3yryC0K4KWkaer4zRS302WZQ0swSM/srQ3RRuALHUqRzOVUcvKx8PEUQhspmGZnEXoRlvuq3b28Vt/JYznoXc5Y/lUyRtnYHNYrLv7RHrX+5FDawx7iLmP7Um5q3kkd47fKmDuIFYquTnOar3kgJCK4Png1juvCKSTHpXk4kslxDFnnbPwqk+rQLkZH9oUMvoo5SY3vGjz4J1FVpOHrGRFEE9wsmD+tMgbPuD+GK5Tc25jrAm5ePWPyzNBJdZh5kHe26HIFZ69v7me5NtbI7y/0dlX3NO09bizeWO6ZysIHKSoAf2qXRtVtZ7q5jYqj842232rPZe1xAfUalYryVGZDFb6rHypLLbKSPq8+T+6pbi11CTPZTRqF8iatanp0eoqOSeSJ1GAY2HT7qz+oR6rpKYCNcQ//AGRLk5/pCksh8eRLoe/6zJp5NWsoy0h7RR1aNi2B6ii2ha9HKwgncHI2Ymgmk6xJcyRxlWPMdwR4UtatVsZxeQnELbuBuFPnRVa9T5WXsqDjownQOQdd68MYPj91Y6DiS4v4YIYgYooR+ufPebyFV9T1mbmCW6ycwyTynw866j/UkGlGZhXgvnBOJtwCueVvuqORI32ZSp81/KsVZcRmVycOrsdlHh61qdLvmvFKyjfwPgfSnUc9Xbr4i7uG1YyZS1X6baAG3tJLtW+1GwAX/qzuKHp+mp1AZLe2B/plz+Fakc8bZGa8aJZcmPCSeI8Grs18kfiROY9BOwZnI9Oncf7VcyyHyVsD5VYi0uCM8yxqD58oz9/WiTx8jEvzc3QivI1ftMvyhMdD1p/cncX0EqCCNdhgfClV3s8dMHPlSqO0nrMzDCOXMarnOO8RmpGEsTd0xrtnu5Jq1FBDG5cwgOerHYmiWmWkLg3EiDkU9xR9o/lTXtVdyq1sZBpllJIonvR3DvGhOC3v5D99FwpbG2AOijoKkjQyS5fx8q8ndIFJycjx8Olcy63ttvE21pjQnowoy2AKZJcRoDvkkZG21ANSv5zA723aSnf6q58QMfOvbN5ILJZb+QiTqUPhmuTZzWDdQuptHH1kmOmM9xdLG0oGcnc94+eAKp63PPbItvaxl3O4x9n1NDrW4mj4jR7hxHFKr9nlSPbc/fRbU7W31NUxeNCFOSYW3YeWfhXMI7bJm3ARhnxMDLc3L3TdtMS6nwNargt7q4Z3cB7ZNhI5z3q9/ixo4k7a6uZZFU55cgZHkSNzWogjjWyj7EJHDjCoBgKKutaky/I5AK9VEzPGt28NsBbHnYtsAawdpa6qbxZGZUy2c9qARXRb/UbWV7jTXeNWPdKuSgz74+dZO6trm2YiZYcc2F5ZASRUZKZxuY35Nla/x7Eli1PU7IyBrhw/MC24IOPlvRWTiSW1SN7yNo1lXmjZxsw8xWa+kKAVYlMHGD4/nRiG9tl0SOC+jEhhk5ollGNjuPxqgyfOonh2kue4yDCdpqtxqsOLWF3RtudV7o+NSJpt7OnZyFIk5sMHIbnUg52z7VSuNSv54D+j4HZMbKGAPsBn8qm4eW9TUZ4bpJ1AgWRe0UgZYnYZ9vCqqhz2xOoT7dahTTtFt7C1MccrHmPeZiMtSis7azEpjbmllBV2bxHlQ/iLW00l4oWGZJVLLnbAGxPzqnNNcT2EVzaSu05P2umKuX6nOPMqtbNsme2Gj3en6lE/Mjxg5WQdMeR8jWhtZ1ikyFCKpyT09TQLRdZlmk+j3eMsMYx45xWg0y3t3uOSZxPOxwqFdkHm3maEyXGJXkEge+HIblLtOaFOdPMA08w+KfdU52ACOcAdcDeq8sCh+dWYMdziuyb2A8TkYBMc8QnUI2Q4GB6+lVGYJ3QOm2PKpIbmQOA5LoT91O1NVRRcLlsnDcoznyNbOJy1t1E21ldyuZN+hpVW7aQ/Vj+9q9ro4iMwfFE1zdRW6p3nbGc5wPE1o+73Y4xiNNgKBcKR3jLd3V52SgAJEsa9Cdzv4+FHUGAM0rlNhuv6l6BrMc8nZrscFjgUJ1Wwub1EijuTEvOC7ePL6etFZ0R05WJG+Qw65oRdyBLgRvcydOblAAGPWuLzTg5bxOhQN+3zJ/1NhYi2iciNevOeYn1J8aDXWoRdsCozyn6zeFD+IdX/AFvYxsMHYYO1Ab5L3sGaCUty7yAL4HxzXLex7GwPE6VNAAyfmaxNTikZCJDuwAZl2OfKquuEQEMXMQyOZhvtUHDss17Zpd3kPYwxY5C385gdR6etZ7ijWVd1hWQtLIf92p8KT0YsF+Y1EHY48TRNYW97EAmpTBnHdPKMA0LvhqNrbixn1OG7jUHu45NvJvu86G6AdTnDtBNypH3mCjmI9z0/fVt4pJ2kY5lfqzYH4Vdm9PUycssAUXJg+a4d3cOiggYA5uYAeGDk1XluZZOWN5Cd8dTtVplSN+0QKCPtHoKlP0iazmNlGrsYmKOxyufFvh5VKbPicpUdjhRKvZRGMYBZlOe0yck+g8qljsvpChRMVDAOwbff86tvZzWZijuVLzlBznY5Ppjp/lUU8jNNBa2689xPIYwq9UI8T5D1oHYnAjVFgfCnYjIpr7TE7WROeJWOXjOcepHhRaz4xR5VNwwCkYDjwozZ6Atuim5vneTl5WVAMH7+tV24I079JR3lu4IU87wOgw7dRv5Z8KlVU5z5/wATqrcrL/INy/dWlteRxXF7hXTJTmAyAf3VHDHZqCIZHXPXJB+VA+LpLuyUy3CyjPTl3yPTFCrDU7N4DIs0ztgYSNuY/d1pPSwjOI5UyuczW2ejQWrfSe1MzBiQxGMZOaraLq1qvEmQT2okZCebouAOnvUOjax9MeOLflA2YjANQcQ6VBbXC67Y5jfnC3CJ0bP28eBztUjBJyd/EqV31f5nQpcrKR2hp6ucY5/iaD6Fq0OoW8cbMO1UbZPUeVFiRnf7q012Bx2E5joUPVpVDHnO+4ONqvsF7GO3fo6lfbPSguryTWDxXcIzk8rg9Kn024l1S6SVVIRdz70zj2MloVRvMixMrn4lJjIrMvKNjilVjUVP02YKjEBz9jNKvXLsTkmFbBBBpipj6zk1NsBnyqBZCdOjckbOQce9PJ7hPpmsdpy5mpB7ZVllZW528flQO8YQ6oJnYGExFCT4HINGZGHKRnB8DVaS0hu4z24AXO+Dsa5HMQtOhQwXzAupcOWurlJ2uJo9tuyK4PkdxUlto0WmwZjjnumQfbcYPwGBRQLGsSJGgVFHdHQKB0qrNfxQDfzGx61z2IGjNQZ2EA6hqd3qltJbw2zwiJ8O7jGBjpg+O9UNEQ3+pfRII1EcYzLKQMqvrWluWt7tTGVEnP0x196p29ouiaTedk/ayyuWaXGDjGAPh+Jpft2Y8NheoHmLX9dtrGIW1mV5BgE+tZf9J3KXsa26vL22AOzX7XsKhNvYX8L3d7POk0cjcqq2AQPP7q1/C2lrpWlLeXyD6TKmR5oD4VPpKB2bcnIqXqB/2ELexhe0Vr6KNJCuGBAzXtppmk29t2aPOq7kKsp2O/T76y+s8QSGdo42xg/ACsxLxNfJdNuzQg4U7AmigWZyglTQxHuOJ167hhu2DRyOjgZzjYjHjQCO0XS7+4uZiDcSBlTxwpcsf3j7qrcEa8+p9pGyluyTmaTHr0PrRXVuWRI2GzBiB67VNljhSp8zOlQR8TJapxVDbXxWdyG67KSPiavaZxHFdxdoiSKvgxUgEeftQG7sraW5le4d+05j3eg++oZbmK1XmhQLy7FQcjHlUFEKgL5m0Vg+fE6HJEmp2htphzROO63kfAisHJp0PD11NDcW6yXDuZOZvqhM7AVqeDr36VpDSRNzxCTCN8PwNCv4QLe5uZrR7ZAX5GBywH76tXkewmKrwLMfE8fXbeWctFbxx5O2BjG3pWpVUaAxLvG0eCDWK4f0IgM+pdmeYfVBzitPfX0drYk8wUlOWNQfHFIsC99bjbADgLAcljc6dOWt/s94KD1HmKP6bxVOqiO8jEgA+sdm++mWsgmsx2wyYl5gR12/Oqt1AVdZICRFKObGNgc7ihQ7H2HcVb1Iw4mrh1Wy1KLsezcl/Dyopo1slu7BOlAtF0OTljn7cqCA2wrSTvHp9lLMduVep8T4V3OFTaP6hyZx72QaWBbyXnuZW8Cx6UqHicEbiVz4kLSruATDmHtPQG3uLdQAM8wx869R8KVPwNUrW9ljnV1VQoOWAHUUQuowCJY94pN1NJvUg5jKWB1B06s2w6mor8mO2ZsnkjXdfOrpAB5vKhWtZjbnIkIdhnl6gZrkcs+BOhSNyzcI11p0ZiPKSvj4HFc3vre/sriVL2eV8Tb5Y8rL4Yro1nL3WjIweYldsdfxoXr+kSahaNHzAOPqkjON8/5VhsQZxNtD9TgzMDUPoKJNCPqjJydiPKtfaSRXVhFdGPs0kQHBrnl9peqX836NgjkhmVh3iu2PPPlW6uR9A0q3hDgiKIJnoDgYzSSqqmfmOuwzACCIrfSv0zNaS2NuzSH6/L126Yo/xVI0OlcyHGVOd/AVzy7kvJ9Se6smDMuG6HbFdMs7i31HTomfcMoJVhsPSqke3BPmRcOjK05Fcm6vLorEqxwk57Vtub2FX7Lh36bKI1upHkI6xx91PcmuiS6Npaz9q8SZ8cjNePNFArJbokY65AxUtcVGBqWNwfwJHoelwcP6WsEKq0hUGWXl5e0bzIoRqurqt3HbRHmmJLNg+FS6nqxKNErhpSuAPKueTzXNnriyly7kcwLeO+4oRTcxOZCJ1HZpruItInule608c0wXLQk/XwPPzrMPouqX+ow6aqGOSVAzMQ3LEp8WyPTpW50nW7O9QAERyfbU9avGeMLzqxJz9pqtXeahgjchux0JZ0uxttG0620y3YlIV5ebpzHqSfWslxVrkC6sVJ/VWi4Ycpbc4J/CiV9qrcz29iVe4YZXm6D1NAF4e1gO9y0Mc8u7SLzBWOevXb51CEMT3+ZNdfTZkC8WW7p/ssU0gJwDjlFTWF1cXtwWmOI85A6AeQFVLa2s3t45BAi4Oe6cD7qMW8capyMVCbYwKLBWNIsemVHuM0NmVW05CVw+ynyJ2/Gr+nWzzMQyd2PYeOTQrSbR7llypEakEeHStrZW55Asanbqa3cPi4AZpzOVcMkCPieUgIrY8AFGKHa3fqZksVYlY92Oc5b/ACqzrGpR6ZEYbfD3bj35fWsqrSytzFSWbcltt673Hp+TORa48CE1cEbDNKqCQTMO9KFI8QpyffcUq09R+4vMIIZG7ruy48MUT0u9WIfRrgfqGPdbP1T+VVzdLj9Xn0HLvVe7vo0tXYuWcELjoc7Vcr3GCIkN1OYZu7d4sgYIPRvOg97qFvagC8bl36sKi03iiGCRbWfM8LHGIgXMXvjp8aO3NnDdxCSErNGw6da5XL4TDzOjx+SpMzcmq2eO0DhoychgdhVO34nVr42wjMyEEiQHpgZq/ecOWD5JiMbH9j8jUFjoK2l0k8ciuEzleTdtiPxrlvxnAyDOittRGxIpuJrNZAoJ5mHcXlO+1ZPiLiNrsiG1jkx9pnHL74Fay+0q2mjVraXsLhHJWVAAcYwVrPS8F2rsC1zODzZYxuFwP3VjUoD75qXr5UTPaVJcSy9pbSkusg5o2G3L8BXSpGeLR43tsIeQEelZq00yx0NJAHkl7Ru85bJPlR3T7hp9M7Oa0lRAMRSMMcw32x1pdx756DUsx8ZmL1jji+trg24gSVl+s42x5bUMXim/lzzmY83gqj861F/wjLdXDukfK/Ulm6+tDJuGb2F+VIQwH2lO1OR6eoyu5Pg5BlbhmaW61OUsCFKZKscnrRa+0lb7VbaMADsg0jsviPL4nFWLXTxpsSdjCFm7IK7EY5mFC4b5oNbQvP340KyKfHONvlSie1pKfqXGSJYveFr2UoNIEMW25kJXf0IBqnDwnxnLMUFzbQx/tNOSD/4k/KttZ63bogSQoGHTlOa8l4ntlAVZGyemFyflV67SowRn/UQ5sY6grhzgyfTn+k6zfrPJzZEUWSvxJANae61CC2t2kKMUH7O5PtQJtXuruQi2tJiCdnkwo96P2zI7gzyFmPgE6+/wpq1PacsMRNjY/LcwNtw/dT3U05uZY1mlaTs1AwuSSB88VpNL4cijcOUMkn7THJrYxqmQpXBZRgY3Fe9ta6cXnupFU78qZGcV1EoXPiY7OU0bp+lcgHaAKMZIqPVdahsFNvaYebHVei0H1Xiae55orRCqc2DjqR50MUkkkn5b10a+MRtpge0mSFpJpjJLI7M25J8TU0ajAFQK6jYAn2q1aviVWdMqOo86exihJlKqMEge9Ko3tllOX5jucb428q9qmBL7l82rSAbDlPUrkVUms+VWUlubz/0xV2S/G+CST4KN6rNdO7YWM5/pHHyrSGMylYLFhG12Zm5izL3FYd0NjBzt7belXYnvba+hNtcMsYXL8mNz5MPKnhXcgHlUZ6Bfzq3Farys5HMuRnJqXct+UFXHiX/0tZmFm1HkiCjvSKdh+VWEtILmIS2sqSowypXxoaIkbuOoKeWK9vmdIyYCUfwZWxisj0K3iaEuZY3U+HvpIY9rJC56smPxoHNwxqQz2WoAjyK4qdeKNTsm5ZmimA2Ak6n4+NEIOL7eX+Vae6DxZCDWWz6WDvrNVf1EjWZnW4S1Ayc8kvaEdO+BU0fDt5GRjlXG+TISa1EOv6PP0eWP/qQirBvtMCK30yNVbpzMBn76T9n00FjfvWb5meMeoWsQkaP6Qw2PZ9cfGqE1/OSc21ypHQFBWyW708ja8iP/AHD869a8sB1uoz7lfzrLZ9MVjnBEYvMx5E51LDqt4CkMTRg7B23YfAUrPg3syJJreWWQ7lmXO9dAbVdNj/8Adx/Bh+dV5OItMj/nef2/0ptXACaUSG5xaZyHh3Bz9DI8N161fg0JIxtCgPl/pU9xxZaLtFAW+H51Sv8AiO/VuRIggKgjB8D7VoXgtnxFNzIR/Rsgx+rjjA+07Y+VRy3VjpwzPeczfsxjH+dZya9vLontp3wfsjaolhX9nfz8a1LwgPyiG5LHxDVxxDJJlbSMRofteJ9aEyTSXDkzF2PvXoj5gAo6eVTKoA6gHyrSiIniIZmbzGRqxJICqPbepVjx1yakjUsyoo67b1J2TqxViMg74oLSAI1VA6gD1qeJh0AJNeIie9TowA2FLO5fxHgSEdFFKvQ7YpVGJOZmf4/8Lbj9KJj0hf8Aw14ePuGCpC6qg/qX/KuVfwdadpup8SLBrKwtZiF3dZZjHnHkQRk+mR8sHqlzwrwLPcma5isGBkjReyvWQMnZhTkKwAORnYeOSTnAr6zRXUR3/wDQeGFGP0op9on/ACp8P8IfDfKVbV0Rc9OykOf/ABrG8bcM8P2nCP6W0a1RGZbUc0dy8gWRu0Mi4LHyTr5e9cxo9dodBPoiL+ELhIfX1oH+pk/w17Lx/wAHSNltayP2exfH92vnalUes0Oondr7jLhBsNBqkZ8Mdi+w/s1RbjTh5VJTUULeA7NwP7tcXpVYch5HQTs8fGmgFczahHn9lEkI+YryXjXQCioNRHIvQCNtvvFcZpUfcNmT11OunjHQGYBbwAj7box/CvDxloR5v9uyR0PZsAflXI6VW+5b9CR0E65/G7Q/+YR/CN/yr0cW6B46kD7xv+VcipUfdPDoJ18cW8Pj/wCRX/8AN/yqVuMtAdgZNTBOMZMb9PurjdKqnkMZPUTsv8cuHQP+JA+0T/lTX410LH6u/jB82jc/hXHKVR67ScTs0XG2gCMm41AM2cAJG+/y2qQcacOknGpoq+XZv/hritKj1mkzuCcb8NrjGrKuN9onz/dqT+PfDRJJ1QEnqTG+/wAq4XRzRNHnu7ZrkW1tPGxIXtLsRFSOu2Qar6phOsjjvhn/AJoo/qn/ACqVePOGPHVl+EL/AOGuZNoLOhaPS7RVHd7+ojIKnDHr4npXraKeV/8A0azj7MHmzqWPE4OC3lR6jQnUhx/wmB/xYfCKT/DSrgB60qjuZOZ6vSvfTA29KVKqSJO95dPYLaPcztaxuWSAyHs1J8QvQHc1VpUqIRUqVKiEVKlSohFSpUqIRUqVKiEVKlSohFSpUqIRUqVKiEVKlSohFTwfQbClSohEoGM+tJt1yev76VKiEZSpUqIT/9k=" alt="Calamari">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h4 class="menu-item-title">Calamari Fritti</h4>
+                            <span class="menu-item-price">$12.00</span>
+                        </div>
+                        <p class="menu-item-desc">Lightly fried squid served with marinara sauce and lemon wedges</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Pasta">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h4 class="menu-item-title">Spaghetti Carbonara</h4>
+                            <span class="menu-item-price">$16.50</span>
+                        </div>
+                        <p class="menu-item-desc">Classic Roman pasta with eggs, cheese, pancetta, and black pepper</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Pasta">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h4 class="menu-item-title">Penne all'Arrabbiata</h4>
+                            <span class="menu-item-price">$15.00</span>
+                        </div>
+                        <p class="menu-item-desc">Penne pasta in a spicy tomato sauce with garlic and chili peppers</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Main Course">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h4 class="menu-item-title">Saltimbocca alla Romana</h4>
+                            <span class="menu-item-price">$24.00</span>
+                        </div>
+                        <p class="menu-item-desc">Veal cutlets topped with prosciutto and sage, cooked in white wine sauce</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Dessert">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h4 class="menu-item-title">Tiramisu</h4>
+                            <span class="menu-item-price">$8.00</span>
+                        </div>
+                        <p class="menu-item-desc">Classic Italian dessert with layers of coffee-soaked ladyfingers and mascarpone cream</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Testimonials</h2>
+                <p>What our customers say about us</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-item">
+                    <p class="testimonial-text">"The best Italian food I've had outside of Italy! The pasta is perfectly al dente, and the sauces are rich and flavorful. The tiramisu is to die for!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Sarah Johnson">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>Food Critic</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  <section class="cooking-classes section-padding" id="classes">
+        <div class="container">
+            <div class="section-title">
+                <h2>Cooking Classes</h2>
+                <p>Learn the art of Italian cooking from our master chefs</p>
+            </div>
+            <div class="classes-container">
+                <div class="class-card">
+                    <div class="class-img">
+                        <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Pasta Making">
+                    </div>
+                    <div class="class-content">
+                        <h3 class="class-title">Handmade Pasta Workshop</h3>
+                        <div class="class-date">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>Every Saturday, 10:00 AM - 1:00 PM</span>
+                        </div>
+                        <p class="class-desc">Learn the secrets of making perfect pasta from scratch. From tagliatelle to ravioli, master traditional techniques with our expert chefs.</p>
+                        <a href="#" class="btn">Book Now</a>
+                    </div>
+                </div>
+                
+                <div class="class-card">
+                    <div class="class-img">
+                        <img src="https://images.unsplash.com/photo-1517244683847-7456b63c5969?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Sauce Mastery">
+                    </div>
+                    <div class="class-content">
+                        <h3 class="class-title">Authentic Sauce Mastery</h3>
+                        <div class="class-date">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>Every Wednesday, 6:00 PM - 8:30 PM</span>
+                        </div>
+                        <p class="class-desc">Discover the art of Italian sauces. From classic marinara to rich bolognese, learn to create authentic Italian sauces that elevate any dish.</p>
+                        <a href="#" class="btn">Book Now</a>
+                    </div>
+                </div>
+                
+                <div class="class-card">
+                    <div class="class-img">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Dessert Artistry">
+                    </div>
+                    <div class="class-content">
+                        <h3 class="class-title">Italian Dessert Artistry</h3>
+                        <div class="class-date">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>Every Sunday, 2:00 PM - 4:30 PM</span>
+                        </div>
+                        <p class="class-desc">Indulge in the sweet side of Italy. Master the techniques behind classic desserts like tiramisu, cannoli, and panna cotta.</p>
+                        <a href="#" class="btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION 2: Seasonal Menu -->
+    <section class="seasonal-menu section-padding" id="seasonal">
+        <div class="container">
+            <div class="section-title">
+                <h2>Seasonal Specialties</h2>
+                <p>Celebrating the flavors of the season</p>
+            </div>
+            <div class="seasonal-content">
+                <div class="seasonal-text">
+                    <h3>Autumn Harvest Menu</h3>
+                    <p>As the leaves change, we celebrate the bounty of autumn with a special menu featuring the season's finest ingredients. Our chefs create dishes that capture the warmth and richness of fall.</p>
+                    <p>This season's highlights include truffles from Umbria, wild mushrooms from the Piedmont region, and the season's first pressing of extra virgin olive oil.</p>
+                    
+                    <h4>Featured Ingredients</h4>
+                    <div class="seasonal-ingredients">
+                        <div class="ingredient">Truffles</div>
+                        <div class="ingredient">Porcini Mushrooms</div>
+                        <div class="ingredient">Pumpkin</div>
+                        <div class="ingredient">Chestnuts</div>
+                        <div class="ingredient">Artichokes</div>
+                        <div class="ingredient">Pomegranate</div>
+                    </div>
+                    
+                    <a href="#reservation" class="btn">Reserve for Seasonal Tasting</a>
+                </div>
+                <div class="seasonal-image">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Seasonal Dish">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION 3: Charity Initiatives -->
+    <section class="charity section-padding" id="charity">
+        <div class="container">
+            <div class="section-title">
+                <h2>Community Commitment</h2>
+                <p>Giving back to the community that supports us</p>
+            </div>
+            
+            <div class="charity-container">
+                <div class="charity-stats">
+                    <div class="stat-box">
+                        <div class="stat-number">5,000+</div>
+                        <div class="stat-label">Meals Donated</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Local Schools Supported</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">$250K</div>
+                        <div class="stat-label">Raised for Charity</div>
+                    </div>
+                </div>
+                
+                <div class="charity-programs">
+                    <div class="program-card">
+                        <h3 class="program-title"><i class="fas fa-utensils"></i> Feed the Future</h3>
+                        <p class="program-desc">Each month, we partner with local schools to provide nutritious meals for students in need. For every meal purchased in our restaurant, we donate a meal to a child in our community.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                    
+                    <div class="program-card">
+                        <h3 class="program-title"><i class="fas fa-graduation-cap"></i> Culinary Scholarships</h3>
+                        <p class="program-desc">We award annual scholarships to aspiring chefs from underserved communities, providing mentorship and financial support for culinary education.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                    
+                    <div class="program-card">
+                        <h3 class="program-title"><i class="fas fa-seedling"></i> Sustainable Farming</h3>
+                        <p class="program-desc">Our partnership with urban farms supports sustainable agriculture and provides fresh produce to food-insecure neighborhoods.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="gallery section-padding" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Gallery</h2>
+                <p>A glimpse of our restaurant and dishes</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Restaurant Interior">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Pasta Dish">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Chef Cooking">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Italian Pizza">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Wine Selection">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Dessert">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="reservation section-padding" id="reservation">
+        <div class="container">
+            <div class="section-title">
+                <h2>Reservations</h2>
+                <p>Book your table for an unforgettable dining experience</p>
+            </div>
+            <form class="reservation-form">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" class="form-control" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <input type="date" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <input type="time" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" required>
+                        <option value="">Number of Guests</option>
+                        <option value="1">1 Person</option>
+                        <option value="2">2 People</option>
+                        <option value="3">3 People</option>
+                        <option value="4">4 People</option>
+                        <option value="5">5 People</option>
+                        <option value="6">6+ People</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">Book a Table</button>
+            </form>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <p>Bella Cucina is an authentic Italian restaurant dedicated to bringing the true flavors of Italy to your table. Our passion for food and tradition is reflected in every dish we serve.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-yelp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#reservation">Reservations</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Italian Street, Food City</p>
+                        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                        <p><i class="fas fa-envelope"></i> info@bellacucina.com</p>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Opening Hours</h3>
+                    <div class="opening-hours">
+                        <p><span>Monday - Thursday</span> <span>11:00 - 22:00</span></p>
+                        <p><span>Friday - Saturday</span> <span>11:00 - 23:00</span></p>
+                        <p><span>Sunday</span> <span>12:00 - 21:00</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Bella Cucina. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenu.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
